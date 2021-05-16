@@ -1,0 +1,66 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...0:2:56
+
+IMAGE : D:\MAJOR_PROJECT_2\Codding_stuff\DATASET\CHEST_XRAY_IMG\val\NORMAL\Normal_Xray_valid (2).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...1:1:24
+
+IMAGE : D:\MAJOR_PROJECT_2\Codding_stuff\DATASET\CHEST_XRAY_IMG\train\NORMAL\covid-negative (1).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...1:2:50
+
+IMAGE : D:\MAJOR_PROJECT_2\Codding_stuff\DATASET\CHEST_XRAY_IMG\train\NORMAL\covid-negative (5).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...1:6:0
+
+IMAGE : D:\MAJOR_PROJECT_2\Codding_stuff\DATASET\CHEST_XRAY_IMG\train\NORMAL\covid-negative (16).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...1:23:1
+
+IMAGE : d:\MAJOR_PROJECT_2\pneumonia_and_covid_prediction_tool\media\covid-negative (1).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DATE/TIME : 5 10, 2021...1:24:4
+
+IMAGE : d:\MAJOR_PROJECT_2\pneumonia_and_covid_prediction_tool\media\covid-negative (1).jpeg
+
+RESULT : Predicted Class is [1]
+Report Negative
+Normal lungs Found
+
+
+
