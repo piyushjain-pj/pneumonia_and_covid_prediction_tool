@@ -18,7 +18,7 @@ def index(request):
     context = {}
     context['segment'] = 'index'
 
-    html_template = loader.get_template( 'index.html' )
+    html_template = loader.get_template( 'home.html' )
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
