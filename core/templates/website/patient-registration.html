@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <style>
+        body {
+        font-family: sans-serif;
+        background-color: #eeeeee;
+        }
+
+        .file-upload {
+        background-color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        }
+
+        .file-upload-btn {
+        width: 100%;
+        margin: 0;
+        color: #fff;
+        background: #1FB264;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        }
+
+        .file-upload-btn:hover {
+        background: #1AA059;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+        }
+
+        .file-upload-btn:active {
+        border: 0;
+        transition: all .2s ease;
+        }
+
+        .file-upload-content {
+        display: none;
+        text-align: center;
+        }
+
+        .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+        }
+
+        .image-upload-wrap {
+        margin-top: 20px;
+        border: 4px dashed #1FB264;
+        position: relative;
+        }
+
+        .image-dropping,
+        .image-upload-wrap:hover {
+        background-color: #1FB264;
+        border: 4px dashed #ffffff;
+        }
+
+        .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+        }
+
+        .drag-text {
+        text-align: center;
+        }
+
+        .drag-text h3 {
+        font-weight: 100;
+        text-transform: uppercase;
+        color: #15824B;
+        padding: 60px 0;
+        }
+
+        .file-upload-image {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+        padding: 20px;
+        }
+
+        .remove-image {
+        width: 200px;
+        margin: 0;
+        color: #fff;
+        background: #cd4535;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #b02818;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        }
+
+        .remove-image:hover {
+        background: #c13b2a;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+        }
+
+        .remove-image:active {
+        border: 0;
+        transition: all .2s ease;
+        }
+  </style>
+  <body>
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-2">
+        <a class="navbar-brand" href="#">
+             <img src="/static/assets/img/AdminLTELogo.png" width="300px" height="50" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">About US</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- right column -->
+          <div class="col-md-12">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">{{ RegistrationType }} Diagnoses With Chest Xray</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form method="POST" action="/predictions-report" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+                    <input name="regtype" value={{ RegistrationType }} type="hidden">
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input name="first_name" type="text" class="form-control" placeholder="First Name" required>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input name="middle_name" type="text" class="form-control" placeholder="Middle Name">
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input name="last_name" type="text" class="form-control" placeholder="LAST NAME" required >
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Data of Birth</label>
+                            <input name="dob" type="date" class="form-control" placeholder="" required>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select name="gender" class="custom-select" name="" id="" required>
+                                <option selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        </div>
+
+                        
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Blood Group</label>
+                              <select name="blood_group" class="form-control" name="" id="" required>
+                                    <option selected>Select Blood Group</option>
+                                    <option value="A Positive">A Positive</option>
+                                    <option value="A Negative">A Negative</option>
+                                    <option value="A Unknown">A Unknown</option>
+                                    <option value="B Positive">B Positive</option>
+                                    <option value="B Negative">B Negative</option>
+                                    <option value="B Unknown">B Unknown</option>
+                                    <option value="AB Positive">AB Positive</option>
+                                    <option value="AB Negative">AB Negative</option>
+                                    <option value="AB Unknown">AB Unknown</option>
+                                    <option value="O Positive">O Positive</option>
+                                    <option value="O Negative">O Negative</option>
+                                    <option value="O Unknown">O Unknown</option>
+                                    <option value="Unknown<">Unknown</option>
+                              </select>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Occupation</label>
+                            <fieldset>
+                            <select name="occupation" class="form-control dropdown" id="occupation" required>
+                                <option value="" selected="selected" disabled="disabled">Select Occupation</option>
+                                <optgroup label="Healthcare Practitioners and Technical Occupations:">
+                                <option value="1">-  Chiropractor</option>
+                                <option value="2">-  Dentist</option>
+                                <option value="3">-  Dietitian or Nutritionist</option>
+                                <option value="4">-  Optometrist</option>
+                                <option value="5">-  Pharmacist</option>
+                                <option value="6">-  Physician</option>
+                                <option value="7">-  Physician Assistant</option>
+                                <option value="8">-  Podiatrist</option>
+                                <option value="9">-  Registered Nurse</option>
+                                <option value="10">-  Therapist</option>
+                                <option value="11">-  Veterinarian</option>
+                                <option value="12">-  Health Technologist or Technician</option>
+                                <option value="13">-  Other Healthcare Practitioners and Technical Occupation</option>
+                                </optgroup>
+                                <optgroup label="Healthcare Support Occupations:">
+                                <option value="14">-  Nursing, Psychiatric, or Home Health Aide</option>
+                                <option value="15">-  Occupational and Physical Therapist Assistant or Aide</option>
+                                <option value="16">-  Other Healthcare Support Occupation</option>
+                                </optgroup>
+                                <optgroup label="Business, Executive, Management, and Financial Occupations:">
+                                <option value="17">-  Chief Executive</option>
+                                <option value="18">-  General and Operations Manager</option>
+                                <option value="19">-  Advertising, Marketing, Promotions, Public Relations, and Sales Manager</option>
+                                <option value="20">-  Operations Specialties Manager (e.g., IT or HR Manager)</option>
+                                <option value="21">-  Construction Manager</option>
+                                <option value="22">-  Engineering Manager</option>
+                                <option value="23">-  Accountant, Auditor</option>
+                                <option value="24">-  Business Operations or Financial Specialist</option>
+                                <option value="25">-  Business Owner</option>
+                                <option value="26">-  Other Business, Executive, Management, Financial Occupation</option>
+                                </optgroup>
+                                <optgroup label="Architecture and Engineering Occupations:">
+                                <option value="27">-  Architect, Surveyor, or Cartographer</option>
+                                <option value="28">-  Engineer</option>
+                                <option value="29">-  Other Architecture and Engineering Occupation</option>
+                                </optgroup>
+                                <optgroup label="Education, Training, and Library Occupations:">
+                                <option value="30">-  Postsecondary Teacher (e.g., College Professor)</option>
+                                <option value="31">-  Primary, Secondary, or Special Education School Teacher</option>
+                                <option value="32">-  Other Teacher or Instructor</option>
+                                <option value="33">-  Other Education, Training, and Library Occupation</option>
+                                </optgroup>
+                                <optgroup label="Other Professional Occupations:">
+                                <option value="34">-  Arts, Design, Entertainment, Sports, and Media Occupations</option>
+                                <option value="35">-  Computer Specialist, Mathematical Science</option>
+                                <option value="36">-  Counselor, Social Worker, or Other Community and Social Service Specialist</option>
+                                <option value="37">-  Lawyer, Judge</option>
+                                <option value="38">-  Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)</option>
+                                <option value="39">-  Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)</option>
+                                <option value="40">-  Religious Worker (e.g., Clergy, Director of Religious Activities or Education)</option>
+                                <option value="41">-  Social Scientist and Related Worker</option>
+                                <option value="42">-  Other Professional Occupation</option>
+                                </optgroup>
+                                <optgroup label="Office and Administrative Support Occupations:">
+                                <option value="43">-  Supervisor of Administrative Support Workers</option>
+                                <option value="44">-  Financial Clerk</option>
+                                <option value="45">-  Secretary or Administrative Assistant</option>
+                                <option value="46">-  Material Recording, Scheduling, and Dispatching Worker</option>
+                                <option value="47">-  Other Office and Administrative Support Occupation</option>
+                                </optgroup>
+                                <optgroup label="Services Occupations:">
+                                <option value="48">-  Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)</option>
+                                <option value="49">-  Chef or Head Cook</option>
+                                <option value="50">-  Cook or Food Preparation Worker</option>
+                                <option value="51">-  Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)</option>
+                                <option value="52">-  Building and Grounds Cleaning and Maintenance</option>
+                                <option value="53">-  Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)</option>
+                                <option value="54">-  Sales Supervisor, Retail Sales</option>
+                                <option value="55">-  Retail Sales Worker</option>
+                                <option value="56">-  Insurance Sales Agent</option>
+                                <option value="57">-  Sales Representative</option>
+                                <option value="58">-  Real Estate Sales Agent</option>
+                                <option value="59">-  Other Services Occupation</option>
+                                </optgroup>
+                                <optgroup label="Agriculture, Maintenance, Repair, and Skilled Crafts Occupations:">
+                                <option value="60">-  Construction and Extraction (e.g., Construction Laborer, Electrician)</option>
+                                <option value="61">-  Farming, Fishing, and Forestry</option>
+                                <option value="62">-  Installation, Maintenance, and Repair</option>
+                                <option value="63">-  Production Occupations</option>
+                                <option value="64">-  Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation</option>
+                                </optgroup>
+                                <optgroup label="Transportation Occupations:">
+                                <option value="65">-  Aircraft Pilot or Flight Engineer</option>
+                                <option value="66">-  Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)</option>
+                                <option value="67">-  Other Transportation Occupation</option>
+                                </optgroup>
+                                <optgroup label="Other Occupations:">
+                                <option value="68">-  Military</option>
+                                <option value="69">-  Homemaker</option>
+                                <option value="70">-  Other Occupation</option>
+                                <option value="71">-  Don't Know</option>
+                                <option value="72">-  Not Applicable</option>
+                                </optgroup>
+                            </select>
+                            </fieldset>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Father's Name</label>
+                            <input name="father_name" type="text" class="form-control" placeholder="" >
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input name="phone" type="text" class="form-control" placeholder="" required>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input name="email" type="email" class="form-control" placeholder="" required>
+                        </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Retype Email</label>
+                            <input  type="text" class="form-control" placeholder="" required>
+                        </div>
+                        </div>
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input name="address" type="text" class="form-control" placeholder="" >
+                        </div>
+                        </div>
+                                                
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select name="state" id="state" class="form-control">
+                                <option selected>Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                </select>
+                        </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input name="city" type="text" class="form-control" placeholder="" >
+                        </div>
+                        </div>
+
+                        
+                        <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <input name="zip" type="text" class="form-control" placeholder="" >
+                        </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="file-upload">
+                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload Your <i class="fas fa-x-ray "></i> X-ray Image</button>
+
+                            <div class="image-upload-wrap">
+                                <input class="file-upload-input" type='file' name="image" onchange="readURL(this);" accept="image/*" required/>
+                                <div class="drag-text">
+                                <h3>Drag and drop a file or select add Image</h3>
+                                </div>
+                            </div>
+                            <div class="file-upload-content">
+                                <img class="file-upload-image" src="#"  alt="your image" />
+                                <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                      <div class="col-sm-12">
+                          <div class="d-flex">
+                          <button type="reset" class="m-2 btn btn-primary btn-block">Reset</button>
+                          <button type="submit" class="m-2 btn btn-success btn-block">Submit Your Report</button>
+                          <button class="m-2 btn btn-danger btn-block">Cancel</button>
+                          </div>
+                      </div>
+                    </div>
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+            }
+
+            function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+            }
+            $('.image-upload-wrap').bind('dragover', function () {
+                    $('.image-upload-wrap').addClass('image-dropping');
+                });
+                $('.image-upload-wrap').bind('dragleave', function () {
+                    $('.image-upload-wrap').removeClass('image-dropping');
+            });
+
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 {% extends "layouts/base-fullscreen.html" %}
 
-{% block title %} Login {% endblock %} 
+{% block title %} Error 404 {% endblock %} 
 
 <!-- Element injected in the BODY element -->
 {% block body_class %} login-page {% endblock body_class %}
@@ -22,67 +22,26 @@
 {% block content %}
 
   <div class="login-box">
-
+{% comment %} 
     <div class="login-logo">
         <a target="_blank" rel="noopener noreferrer" 
-           href="https://appseed.us/admin-dashboards/django-dashboard-adminlte">CNPP <b>Admin</b></a>
-    </div>
+           href="https://appseed.us/admin-dashboards/django-dashboard-adminlte">Django <b>Admin</b>LTE</a>
+    </div> {% endcomment %}
 
     <!-- /.login-logo -->
     <div class="card">
+
       <div class="card-body login-card-body">
 
-            <p class="login-box-msg">
-            {% if msg %}
-                <span class="text-danger">{{ msg | safe }}</span>
-            {% else %}
-                Add your credentials
-            {% endif %}
+        <h5 class="login-box-msg">
+          Error 404 - Page not found
+        </h5>
+        <p class="login-box-msg">
+          Please contact support - <a href="/" class="text-center">Home</a>
         </p>
 
-        <form method="post" action="">
-
-          {% csrf_token %}
-
-          <div class="input-group mb-3">
-            {{ form.username }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            {{ form.password }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Remember Me
-                </label>
-              </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-4">
-              <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
-            </div>
-            <!-- /.col -->
-          </div>
-        </form>
-
-        <br /><br />
-
+        <br />
         {% comment %} <div class="text-center">
-            Not a member? <a href="{% url 'register' %}" class="text-center">Register</a>
-            <br />
-            <br />
             &copy; ColorLib 
             <a target="_blank" rel="noopener noreferrer"
                href="https://appseed.us/admin-dashboards/django-dashboard-adminlte"><b>Admin</b>LTE</a> 

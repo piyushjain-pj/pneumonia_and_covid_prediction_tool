@@ -8,6 +8,8 @@ labels = ['COVID', 'NORMAL']
 img_size = 150
 # load Pretrained model
 mymodel = load_model(model_path)
+
+
 def getPrediction(img):
     N_test = []
     for feature in img:
