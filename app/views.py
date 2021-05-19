@@ -208,7 +208,7 @@ def predictions(request):
 
 
 
-    subject = "Your "+  request.POST['regtype'] + "Diagnosis Report"
+    subject = "Your "+  request.POST['regtype'] + " Diagnosis Report"
     html_content = returndata
     email = EmailMessage(subject, html_content,"cnpptool@gmail.com", [request.POST['email']])
     email.content_subtype = "html"

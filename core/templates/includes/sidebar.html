@@ -36,8 +36,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item {% if 'index' in segment %} active {% endif %}">
-            <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
+          <li class="nav-item">
+            <a href="/mainadmin" class="nav-link {% if request.path == '/mainadmin' %} active {% endif %} ">
+              
+              
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard 
                 <!-- <i class="right fas fa-angle-left"></i> -->
@@ -53,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link" href="{% url 'covid_reporting' %}">
+            <a  class="nav-link {% if request.path == '/covid-reporting' %} active {% endif %} " href="{% url 'covid_reporting' %} " >
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Covid Patient Report
@@ -61,14 +63,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link" href="{% url 'pneumonia_reporting' %}">
+            <a  class="nav-link {% if request.path == '/pneumonia-reporting' %} active {% endif %} " href="{% url 'pneumonia_reporting' %} " >
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Pneumonia Report
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -78,13 +80,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link {% if 'index.html' in segment %} active {% endif %}">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Profile</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/index2.html" class="nav-link {% if 'index2.html' in segment %} active {% endif %}">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Change Password</p>
                 </a>
